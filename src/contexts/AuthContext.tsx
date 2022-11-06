@@ -51,14 +51,15 @@ const [user, setUser] = useState<UserProps>({} as UserProps);
       setIsUserLoading(true); 
 
       const tokenResponse = await api.post('/users', {access_token});
-      console.log(tokenResponse.data)
-      api.defaults.headers.common['Authorization'] = `Bearer${tokenResponse.data.token}`; 
-      const userInfoResponse = await api.get('/me');
-
-      console.log('USERTOKEN',userInfoResponse.data); 
+      console.log('TOKEN=>',tokenResponse.data)
+      api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data.token}`; 
+      
+      const userInfoResponse = await api.get('/me'); 
+      // console.log(userInfoResponse.data)
+      setUser(userInfoResponse.data.user); 
     
     } catch (error) {
-      console.log(error); 
+      console.log(error.response?.data); 
       throw error; 
     }finally {  
       setIsUserLoading(false)

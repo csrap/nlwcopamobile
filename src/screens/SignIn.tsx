@@ -6,9 +6,8 @@ import Logo from '../assets/logo.svg';
 import { Button } from "../Components/Button";
 
 export function SignIn()  {
-const {signIn, user} = useAuth();
+const {signIn, isUserLoading} = useAuth();
 
-console.log('Dados de Usuraios =>', user); 
 
   return (
     <Center flex={1} bgColor="gray.900" p={7}>
@@ -16,11 +15,12 @@ console.log('Dados de Usuraios =>', user);
 
       <Button
       title="ENTRAR CON GOOGLE"
-      leftIcon={<Icon as={Fontisto} name="google" color="white" size="md"/>}
       type="SECONDARY"
-      // isLoading={true}
+      leftIcon={<Icon as={Fontisto} name="google" color="white" size="md"/>}
+      isLoading={isUserLoading}
       mt={12}
       onPress={signIn}
+      _loading={{_spinner: {color: 'white'}}}
       />
 
       <Text color="white" textAlign="center"mt={4}>
