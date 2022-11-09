@@ -56,6 +56,8 @@ export function Details(){
       message: poolDetails.code
     }); 
   }
+
+  
     useEffect(() => {
       fetchPoolDetails()
     }, [id]);
@@ -97,6 +99,7 @@ export function Details(){
 
                 <Guesses
                 poolId={poolDetails.id}
+                code={poolDetails.code}
                 />
 
 

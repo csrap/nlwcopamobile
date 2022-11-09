@@ -28,7 +28,7 @@ const [user, setUser] = useState<UserProps>({} as UserProps);
   const [isUserLoading, setIsUserLoading] = useState(false);
 
   const [request, response, prompAsync] = Google.useAuthRequest({
-    clientId:'1081322501516-85h4mvi05644euh5s3liaeq30ah8v6uc.apps.googleusercontent.com',
+    clientId:process.env.CLIENT_ID,
     redirectUri: AuthSession.makeRedirectUri({ useProxy: true}),
     scopes: ['profile', 'email']
   })
