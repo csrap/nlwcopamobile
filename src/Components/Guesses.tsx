@@ -25,6 +25,7 @@ export function Guesses({ poolId, code }: Props) {
 
       const response = await api.get(`pools/${poolId}/games`); 
       setGames(response.data.games); 
+      console.log(response.data)
       
     } catch (error) {
       console.log(error);
@@ -40,7 +41,7 @@ export function Guesses({ poolId, code }: Props) {
     }
   }
 
-  async function handleGuessCOnfirm(gameId: string){
+  async function handleGuessConfirm(gameId: string){
     try {
       if(!firtTeamPoints.trim() || !secondTeamPoints.trim()){
         return toast.show({
@@ -51,8 +52,8 @@ export function Guesses({ poolId, code }: Props) {
       }
 
       await api.post(`pools${poolId}/games/${gameId}/guesses`, {
-        firsTeamPoints: Number(firtTeamPoints),
         firtTeamPoints: Number(firtTeamPoints),
+        secondTeamPoints: Number(secondTeamPoints),
       }); 
 
       toast.show({
@@ -91,7 +92,7 @@ export function Guesses({ poolId, code }: Props) {
       data={item} 
       setFirstTeamPoints={setFirtTeamPoints}
       setSecondTeamPoints={setSecondTeamPoints}
-      onGuessConfirm={() => handleGuessCOnfirm(item.id)}
+      onGuessConfirm={() => handleGuessConfirm(item.id)}
       />
     )}
     _contentContainerStyle={{ pb: 10}}
